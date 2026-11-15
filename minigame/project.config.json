@@ -1,0 +1,12 @@
+{
+  "appid": "tt9f62e9df011e983c02",
+  "projectname": "fruit-2048",
+  "compileType": "game",
+  "setting": {
+    "es6": true,
+    "postcss": false,
+    "minified": true,
+    "urlCheck": false
+  },
+  "cloudfunctionRoot": "cloud/"
+}

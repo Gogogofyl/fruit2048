@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2048 调试预览</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+    canvas { display: block; }
+    #diag { position: fixed; top: 0; left: 0; right: 0; z-index: 99; background: rgba(0,0,0,.75); color: #0f0; font: 12px monospace; padding: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <div id="diag">init</div>
+  <script src="js/platform.js?v=18"></script>
+  <script src="js/tile.js?v=18"></script>
+  <script src="js/grid.js?v=18"></script>
+  <script src="js/storage_manager.js?v=18"></script>
+  <script src="js/input_manager.js?v=18"></script>
+  <script src="js/renderer.js?v=18"></script>
+  <script src="js/game_manager.js?v=18"></script>
+  <script>
+    (function () {
+      var diag = document.getElementById('diag');
+      var types = ['Platform','Tile','Grid','StorageManager','InputManager','Renderer','GameManager'];
+      var report = types.map(function (t) { return t + '=' + typeof window[t]; }).join(' ');
+      try {
+        var game = new GameManager(4, InputManager, Renderer, StorageManager);
+        window.__game = game;
+        var tiles = [];
+        game.grid.eachCell(function (x, y, t) { if (t) tiles.push(t.value + '@' + x + ',' + y); });
+        diag.textContent = report + '\nOK tiles=' + JSON.stringify(tiles) + ' score=' + game.score;
+        setTimeout(function () {
+          var imgs = {};
+          Object.keys(game.renderer.images).forEach(function (k) { imgs[k] = game.renderer.images[k].naturalWidth; });
+          var imOk = game.renderer.inputManager ? 'ok' : 'MISSING';
+          diag.textContent = report + '\ninputManager=' + imOk + ' imgs=' + JSON.stringify(imgs);
+        }, 1500);
+      } catch (e) {
+        diag.textContent = report + '\nERR ' + e.message + '\n' + (e.stack || '');
+      }
+    })();
+  </script>
+</body>
+</html>

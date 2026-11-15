@@ -24,8 +24,14 @@ $transition-speed: 100ms;
 html, body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
 
-  background: #faf8ef;
+  background-color: #f6e9dc;
+  background-image:
+    radial-gradient(1200px 800px at 12% -10%, rgba(255, 214, 180, .55), transparent 60%),
+    radial-gradient(1000px 700px at 110% 18%, rgba(186, 220, 255, .45), transparent 55%),
+    linear-gradient(180deg, #fdeee3 0%, #f6e9dc 45%, #eef1e6 100%);
+  background-attachment: fixed;
   color: $text-color;
   font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: 18px;
@@ -411,6 +417,71 @@ hr {
     @include smaller($mobile-threshold) {
       font-size: 10px;
     }
+  }
+
+  // 水果贴图：2~2048 级使用素材图，4096 及以上保留原数字配色。
+  // 底色为半透明渐变，按等级 白→绿→蓝→紫→橙红→红→玫红→深红 递进，水果图叠在渐变上层。
+  &.tile-2 .tile-inner,
+  &.tile-4 .tile-inner,
+  &.tile-8 .tile-inner,
+  &.tile-16 .tile-inner,
+  &.tile-32 .tile-inner,
+  &.tile-64 .tile-inner,
+  &.tile-128 .tile-inner,
+  &.tile-256 .tile-inner,
+  &.tile-512 .tile-inner,
+  &.tile-1024 .tile-inner,
+  &.tile-2048 .tile-inner {
+    background-color: transparent;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: 88% 88%, 100% 100%;
+    line-height: normal;
+    font-size: 0;
+  }
+  &.tile-2 .tile-inner {
+    background-image: url("../assets/fruits/processed/02-blueberry.png"),
+      linear-gradient(135deg, rgba(238, 231, 221, .55), rgba(228, 220, 208, .35));
+  }
+  &.tile-4 .tile-inner {
+    background-image: url("../assets/fruits/processed/04-grape.png"),
+      linear-gradient(135deg, rgba(199, 229, 164, .55), rgba(163, 209, 128, .35));
+  }
+  &.tile-8 .tile-inner {
+    background-image: url("../assets/fruits/processed/08-orange.png"),
+      linear-gradient(135deg, rgba(140, 200, 105, .60), rgba(102, 176, 80, .40));
+  }
+  &.tile-16 .tile-inner {
+    background-image: url("../assets/fruits/processed/16-peach.png"),
+      linear-gradient(135deg, rgba(170, 210, 238, .60), rgba(124, 182, 224, .40));
+  }
+  &.tile-32 .tile-inner {
+    background-image: url("../assets/fruits/processed/32-pineapple.png"),
+      linear-gradient(135deg, rgba(90, 150, 235, .62), rgba(48, 115, 205, .42));
+  }
+  &.tile-64 .tile-inner {
+    background-image: url("../assets/fruits/processed/64-coconut.png"),
+      linear-gradient(135deg, rgba(168, 152, 216, .58), rgba(138, 116, 196, .38));
+  }
+  &.tile-128 .tile-inner {
+    background-image: url("../assets/fruits/processed/128-melon.png"),
+      linear-gradient(135deg, rgba(149, 117, 205, .62), rgba(110, 82, 170, .42));
+  }
+  &.tile-256 .tile-inner {
+    background-image: url("../assets/fruits/processed/256-kiwi-gold.png"),
+      linear-gradient(135deg, rgba(239, 124, 92, .62), rgba(214, 78, 66, .42));
+  }
+  &.tile-512 .tile-inner {
+    background-image: url("../assets/fruits/processed/512-strawberry.png"),
+      linear-gradient(135deg, rgba(229, 92, 92, .62), rgba(198, 58, 58, .42));
+  }
+  &.tile-1024 .tile-inner {
+    background-image: url("../assets/fruits/processed/1024-dragonfruit.png"),
+      linear-gradient(135deg, rgba(196, 96, 140, .62), rgba(158, 66, 116, .42));
+  }
+  &.tile-2048 .tile-inner {
+    background-image: url("../assets/fruits/processed/2048-golden-watermelon.png"),
+      linear-gradient(135deg, rgba(214, 64, 64, .66), rgba(170, 36, 36, .46));
   }
 }
 

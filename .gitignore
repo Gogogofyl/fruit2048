@@ -1,1 +1,39 @@
 .sass-cache/
+node_modules/
+
+# 抖音云后端是独立部署仓库（有自己的 .git），父仓库不跟踪
+minigame/cloud/
+
+# 本地服务端环境变量（含 AppSecret，禁止提交到仓库）
+.env
+.env.local
+cloud/.env
+
+# ---- 打包产物：体积大且可重建，不进仓库 ----
+build/dist/
+build/desktop/dist/
+build/desktop/node_modules/
+# web/ 与 android/assets/ 都是从 local/ 拷过去的运行时副本
+build/desktop/web/
+build/android/assets/
+build/android/build/
+build/android/gen/
+build/android/dex/
+build/android/classes/
+build/android/classes.jar
+build/android/res.zip
+build/android/base.apk
+build/android/withdex.apk
+build/android/aligned.apk
+
+# 签名密钥不进公开仓库（口令在 build/dist/README.md 里，文件自己保管）
+*.jks
+*.keystore
+
+# 音频中间产物：可由 tools/make_bgm_data.py 从源音频重建
+tools/voice-src/
+
+# 备份与缓存
+*.bak
+__pycache__/
+*.pyc

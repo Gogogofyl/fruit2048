@@ -74,10 +74,8 @@ HTMLActuator.prototype.addTile = function (tile) {
     classes.push("tile-merged");
     this.applyClasses(wrapper, classes);
 
-    // Render the tiles that merged
-    tile.mergedFrom.forEach(function (merged) {
-      self.addTile(merged);
-    });
+    // 透明水果素材下，被合并的来源旧块若一并渲染，会与新合成块叠在同一格，
+    // 透明背景互相透出造成两种水果贴图重合；因此不再渲染来源旧块，仅保留新块弹出动画。
   } else {
     classes.push("tile-new");
     this.applyClasses(wrapper, classes);
